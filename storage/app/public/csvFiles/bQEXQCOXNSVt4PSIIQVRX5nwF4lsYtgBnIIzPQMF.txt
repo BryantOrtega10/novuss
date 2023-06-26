@@ -1,0 +1,35 @@
+﻿1;5700447;1;EDESIDERIO;;OLIVEROS;TARAZONA;5768522;20/04/1987;1;4;;;5768001;28/02/1969;5768755;FINCA SANTA ISABEL VEREDA AGUA BUENA MUNICIPIO PALMAS DEL SOCORRO;VEREDA AGUA BUENA;3;2;0;3187125079;edesideriooliveros1@gmail.com;;1;1;;;;;;1;1
+2;empleado;24;31;18/06/2018;1;;5768001;172;1;Cheque;;;;;;;5;;1;0;0;;;;;;;;;;;
+3;2;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+4;119;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+5;11;51;73;11;18/06/2018;;;;;;;;;;;;;;;;;;;;;;;;;;;
+6;MES;1440000;;18/06/2018;;1;;;;;;;;;;;;;;;;;;;;;;;;;;
+8;LUCILA RODRIGUEZ ARDILA;3124241037;FINCA SANTA ISABEL VEREDA AGUA BUENA MUNICIPIO PALMAS DEL SOCORRO;5768755;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+1;14272339;1;LUIS;ALBERTO;RODRIGUEZ;PULIDO;5773055;2/10/1984;1;4;;;5773411;4/10/1963;5773411;FINCA LAS CLARAS;VEREDA;3;2;0;3224615786;yuranyrodriguez28@gmail.com;;4;1;;;;;;1;1
+2;empleado;24;31;16/01/2018;1;;5773001;172;1;Cheque;;;;;;;5;;1;0;0;;;;;;;;;;;
+3;2;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+4;119;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+5;13;57;77;10;16/01/2018;;;;;;;;;;;;;;;;;;;;;;;;;;;
+6;MES;908550;;16/01/2018;;1;;;;;;;;;;;;;;;;;;;;;;;;;;
+8;DEIVI YURANI RODRIGUEZ MUNEVAR;3107955384;FINCA LAS CLARAS;5773411;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+1;5702559;1;JOSE;BERNARDO;PORRAS;MONSALVE;5768001;20/09/1999;1;4;;;5768001;4/09/1981;5768755;FINCA SANTA LUCIA VEREDA CHICAQUI;VEREDA CHICAQUI;3;2;0;3212605167;yazmivargas05berna@gmail.com;;1;1;;;;;;1;1
+2;empleado;24;31;9/03/2020;1;;5768001;172;1;Cheque;;;;;;;5;;1;0;0;;;;;;;;;;;
+3;2;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+4;119;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+5;13;51;3;110;9/03/2020;;;;;;;;;;;;;;;;;;;;;;;;;;;
+6;MES;1060000;;9/03/2020;;1;;;;;;;;;;;;;;;;;;;;;;;;;;
+8;YULIETH XIOMARA PORRAS VARGAS;3212555752;FINCA SANTA LUCIA VEREDA CHICAQUI;5768755;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+1;1101546395;1;LUIS;FERNANDO;TORRES;HOLGUIN;5768524;23/04/2010;1;3;;;5768001;14/03/1992;5768755;FINCA EL DESCANSO VEREDA LA CHAPA DE PLAMAS DEL SOCORRO;VEREDA LA CHAPA PALMAS DEL SOCORRO;3;2;0;3187528276;toes5559@gmail.com;;4;1;;;;;;3;1
+2;empleado;24;31;18/09/2020;1;;5768001;172;1;Cheque;;;;;;;5;;1;0;0;;;;;;;;;;;
+3;2;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+4;119;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+5;11;51;73;11;18/09/2020;;;;;;;;;;;;;;;;;;;;;;;;;;;
+6;MES;908550;;18/09/2020;;1;;;;;;;;;;;;;;;;;;;;;;;;;;
+8;SORAIDA HOLGUIN CALDERON;3166972205;FINCA EL DESCANSO VEREDA LA CHAPA DE PALMAS DEL SOCORRO;5768755;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+1;12458820;1;LUIS;FERNANDO;COLLANTES;RIAÑO;5720710;20/06/1994;1;4;;;5720710;15/12/1975;5768755;FINCA EL PORVENIR VEREDA AGUA DULCE;VEREDA AGUA DULCE;3;2;0;3212552937;tarazonaoliveros@hotmail.com;;3;1;;;;;;1;1
+2;empleado;24;31;1/03/2021;1;;5768001;166;1;Cheque;;;;;;;5;;1;0;0;;;;;;;;;;;
+3;2;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+4;119;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+5;11;51;73;11;1/03/2021;;;;;;;;;;;;;;;;;;;;;;;;;;;
+6;MES;908550;;1/03/2021;;1;;;;;;;;;;;;;;;;;;;;;;;;;;
+8;MERCEDES CASTELLANOS SUAREZ;3157997438;FINCA EL PORVENIR VEREDA AGUA DULCE;5768755;;;;;;;;;;;;;;;;;;;;;;;;;;;;

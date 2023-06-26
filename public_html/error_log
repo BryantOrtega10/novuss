@@ -1,0 +1,1 @@
+[01-Apr-2023 20:45:26 UTC] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.1.2". You are running 7.4.33. in /home/wwnovu/vendor/composer/platform_check.php on line 24
