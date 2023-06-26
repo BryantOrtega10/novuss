@@ -14652,13 +14652,15 @@ class ReportesNominaController extends Controller
         ->whereIn("tipo",[1,4,7,8])
         ->whereNull("fkEmpresa")->get();
 
+        $tipos_liquidacion = DB::table("tipoliquidacion")->get();        
         $dataUsu = UsuarioController::dataAdminLogueado();
         Log::channel('gesath')->info("El usuario ".$dataUsu->email.", ingresó al menu 'Enviar correos'");
 
         return view('/reportes.envioCorreos',[
             "empresas" => $empresas,
             "mensajes" => $mensajes,
-            "dataUsu" => $dataUsu
+            "dataUsu" => $dataUsu,
+            "tipos_liquidacion" => $tipos_liquidacion
         ]);
     }
 
@@ -14698,6 +14700,16 @@ class ReportesNominaController extends Controller
                 $liquidacion = $liquidacion->where("ecc.fkCentroCosto","=",$req->centroCosto);
             }
 
+            if(isset($req->tipoliquidacion)){
+                $liquidacion = $liquidacion->where("ln.fkTipoLiquidacion","=",$req->tipoliquidacion);
+            }
+
+            if(isset($req->nProceso)){
+                $nProceso = explode(",", $req->nProceso);
+                $nProceso = array_map('trim', $nProceso);                
+                $liquidacion = $liquidacion->whereIn("ln.idLiquidacionNomina",$nProceso);
+            }
+
             $sqlWhere = "( 
                 ('".$req->fechaInicio."' BETWEEN ln.fechaInicio AND ln.fechaFin) OR
                 ('".$req->fechaFin."' BETWEEN ln.fechaInicio AND ln.fechaFin) OR
@@ -14706,7 +14718,6 @@ class ReportesNominaController extends Controller
             )";
             $liquidacion = $liquidacion->whereRaw($sqlWhere);
             $liquidacion = $liquidacion->get();
-            
             foreach($liquidacion as $liquida){
                 DB::table("item_envio_correo_reporte")->insert([
                     "fkEnvioCoreoReporte" => $id_envio_correo_reporte,

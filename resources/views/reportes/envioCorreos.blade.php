@@ -81,6 +81,23 @@
                         </div>
                     </div>
                     <div class="col-3">
+                        <div class="form-group">
+                            <label for="mensaje" class="control-label">Tipo de liquidaci&oacute;n</label>
+                            <select class="form-control" id="tipoliquidacion" name="tipoliquidacion">
+                                <option value=""></option>
+                                @foreach ($tipos_liquidacion as $tipo_liquidacion)
+                                    <option value="{{$tipo_liquidacion->idTipoLiquidacion}}">{{$tipo_liquidacion->nombre}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="form-group">
+                            <label for="nProceso" class="control-label">Num. Proceso(s)</label>
+                            <input type="text" class="form-control" id="nProceso" name="nProceso" />
+                        </div>
+                    </div>
+                    <div class="col-3">
                         <div class="text-center"><input type="submit" value="Generar cola" class="btnSubmitGen" /></div>
                     </div>
 
