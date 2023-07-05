@@ -542,7 +542,7 @@ class ProvisionesController extends Controller
                     ->first();
                     $totalPeriodoPagoAnioActual = $liquidacionesMesesAnterioresCompleta->periodPago;
                     
-
+                    $fechaFinMes = date("Y-m-t", strtotime($fechaFin));
                     $itemsBoucherSalarialMesesAnterioresCes = DB::table("item_boucher_pago", "ibp")
                     ->selectRaw("Sum(ibp.valor) as suma")
                     ->join("boucherpago as bp","bp.idBoucherPago","=","ibp.fkBoucherPago")
@@ -550,13 +550,12 @@ class ProvisionesController extends Controller
                     ->join("grupoconcepto_concepto as gcc","gcc.fkConcepto","=","ibp.fkConcepto")                
                     ->where("bp.fkEmpleado","=",$empleado->idempleado)
                     ->where("bp.fkPeriodoActivo","=",$idPeriodo)
-                    ->where("ln.fechaInicio","<=",$fechaFin)
+                    ->where("ln.fechaInicio","<=",$fechaFinMes)
                     ->whereRaw("YEAR(ln.fechaInicio) = '".$anioActual."'")                
                     ->where("gcc.fkGrupoConcepto","=","11") //11 - Salarial
                     ->first();
-
+                    
                     $salarialCes = $itemsBoucherSalarialMesesAnterioresCes->suma;
-
                     
                     
                     if(substr($fechaFinalCes, 8, 2) == "31" || (substr($fechaFinalCes, 8, 2) == "28" && substr($fechaFinalCes, 5, 2) == "02") || (substr($fechaFinalCes, 8, 2) == "29" && substr($fechaFinalCes, 5, 2) == "02")  ){
@@ -1474,12 +1473,12 @@ class ProvisionesController extends Controller
             ->join("grupoconcepto_concepto as gcc","gcc.fkConcepto","=","ibp.fkConcepto")                
             ->where("bp.fkEmpleado","=",$empleado->idempleado)
             ->where("bp.fkPeriodoActivo","=",$idPeriodo)
-            ->where("ln.fechaInicio","<=",$fechaFinalPrima)
+            ->where("ln.fechaInicio","<=",$fechaFinalPrima2)
             ->whereRaw("YEAR(ln.fechaInicio) = '".$anioActual."'")                
             ->where("gcc.fkGrupoConcepto","=","11") //11 - Salarial
             ->first();
             $salarialPrima = $itemsBoucherSalarialMesesAnteriores->suma;
-    
+            //dd($salarialPrima, $fechaFinalPrima);
             if(substr($fechaFinalPrima, 5, 2) == "02" && intval(substr($fechaFinalPrima, 8, 2)) >= 28){
                 $fechaFinalPrima = substr($fechaFin,0,8)."30";
             }
@@ -1656,7 +1655,7 @@ class ProvisionesController extends Controller
             ->join("grupoconcepto_concepto as gcc","gcc.fkConcepto","=","ibp.fkConcepto")                
             ->where("bp.fkEmpleado","=",$empleado->idempleado)
             ->where("bp.fkPeriodoActivo","=",$idPeriodo)
-            ->where("ln.fechaInicio","<=",$fechaFinalPrima)
+            ->where("ln.fechaInicio","<=",$fechaFinalPrima2)
             ->whereRaw("YEAR(ln.fechaInicio) = '".$anioActual."' and MONTH(ln.fechaInicio) > 6")                
             ->where("gcc.fkGrupoConcepto","=","11") //11 - Salarial
             ->first();
