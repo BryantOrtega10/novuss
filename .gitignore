@@ -24,3 +24,5 @@ Homestead.json
 
 *.log
 *.env
+
+.log
