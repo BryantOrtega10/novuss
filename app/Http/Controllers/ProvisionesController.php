@@ -154,9 +154,7 @@ class ProvisionesController extends Controller
                 }
                 
                 $arrResPrima = $this->calcularPrimaProv($fechaInicio, $fechaFin, $empleado, $idPeriodo, $salarioMes);
-                
                 $liquidacionPrima = $arrResPrima["liquidacionPrima"];
-                
                 $arrComoCalculaProv[58] = ($arrComoCalcula[58] ?? array());
                 array_push($arrComoCalculaProv[58], "Valor Salario: $".number_format($arrResPrima["salarioPrima"],0,",","."));
                 array_push($arrComoCalculaProv[58], "Valor promedio Salarial: $".number_format($arrResPrima["salarialPrima"],0,",","."));
@@ -325,7 +323,7 @@ class ProvisionesController extends Controller
                         ->where("fechaCambio",">",date("Y-m-d", strtotime($fechaFin." -3 months + 1 day")))
                         ->first();
                     }
-                    
+
 
                     if(isset($cambioSalario)){
                         $liquidacionesMesesAnterioresCesantias = DB::table("liquidacionnomina", "ln")
@@ -371,7 +369,7 @@ class ProvisionesController extends Controller
                                     $salarioUltimoMes += $liquidacionUltimoMesCesantias->salarioPago;
                                     $periodoUltimoMes += $liquidacionUltimoMesCesantias->periodPago;                                    
                                 }
-                                $salarioUltimoMes = $salarioUltimoMes*30/$periodoUltimoMes;
+                                // $salarioUltimoMes = $salarioUltimoMes*30/$periodoUltimoMes;
                                 
                                 $periodPagoCesantiasMesesAnt = $periodPagoCesantiasMesesAnt + 30;
                                 $salarioPagoCesantiasMesesAnt = $salarioPagoCesantiasMesesAnt + $salarioUltimoMes;
@@ -439,7 +437,7 @@ class ProvisionesController extends Controller
                         }
                         $salarioCes = $salarioMes;
                     }
-                        
+
                     if($empleado->fkTipoCotizante == 51){
                         $liquidacionesMesesAnterioresCes51 = DB::table("liquidacionnomina", "ln")
                         ->selectRaw("sum(bp.periodoPago) as periodPago, sum(bp.diasTrabajados) as diasTrabajadosPer, sum(bp.diasIncapacidad) as diasIncapacidadPer, sum(bp.salarioPeriodoPago) as salarioPago, min(ln.fechaInicio) as minimaFecha")
@@ -1477,6 +1475,20 @@ class ProvisionesController extends Controller
             ->whereRaw("YEAR(ln.fechaInicio) = '".$anioActual."'")                
             ->where("gcc.fkGrupoConcepto","=","11") //11 - Salarial
             ->first();
+
+            $itemsBoucherSalarialMesesAnterioresSQL = DB::table("item_boucher_pago", "ibp")
+            ->selectRaw("ibp.valor, ln.fechaLiquida")
+            ->join("boucherpago as bp","bp.idBoucherPago","=","ibp.fkBoucherPago")
+            ->join("liquidacionnomina as ln","ln.idLiquidacionNomina","=","bp.fkLiquidacion")
+            ->join("grupoconcepto_concepto as gcc","gcc.fkConcepto","=","ibp.fkConcepto")                
+            ->where("bp.fkEmpleado","=",$empleado->idempleado)
+            ->where("bp.fkPeriodoActivo","=",$idPeriodo)
+            ->where("ln.fechaInicio","<=",$fechaFinalPrima2)
+            ->whereRaw("YEAR(ln.fechaInicio) = '".$anioActual."'")                
+            ->where("gcc.fkGrupoConcepto","=","11") //11 - Salarial
+            ->get();
+
+
             $salarialPrima = $itemsBoucherSalarialMesesAnteriores->suma;
             //dd($salarialPrima, $fechaFinalPrima);
             if(substr($fechaFinalPrima, 5, 2) == "02" && intval(substr($fechaFinalPrima, 8, 2)) >= 28){

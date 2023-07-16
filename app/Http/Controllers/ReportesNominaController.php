@@ -9654,7 +9654,6 @@ class ReportesNominaController extends Controller
             $datosProv = $datosProv->where("p.fkConcepto","=",$req->provision);
         }
         $datosProv = $datosProv->where("n.fkEmpresa","=",$req->empresa)
-        ->where("dp.numeroIdentificacion","=","1014249072")
         ->orderBy("p.fkEmpleado")
         ->orderBy("p.fkPeriodoActivo")
         ->get();

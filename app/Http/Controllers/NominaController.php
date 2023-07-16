@@ -15742,7 +15742,7 @@ class NominaController extends Controller
             ->get();
         foreach($grupoConceptoCalculoPrimaCes as $grupoConcepto){
             if(isset($arrValorxConcepto[$grupoConcepto->fkConcepto]) && $grupoConcepto->fkConcepto != 36){
-                $salarial = $salarial + floatval($arrValorxConcepto[$grupoConcepto->fkConcepto]['valor']);
+                $salarial = $salarial + round(floatval($arrValorxConcepto[$grupoConcepto->fkConcepto]['valor']));
             }
         }
        
@@ -15767,7 +15767,7 @@ class NominaController extends Controller
             ->where("bp.fkLiquidacion","=",$liquidacionMesActual->idLiquidacionNomina)                        
             ->where("gcc.fkGrupoConcepto","=","11") //11 - Salarial Prima
             ->first();
-            $salarial = $salarial + $itemsBoucherSalarialMesAct->suma;
+            $salarial = $salarial + round($itemsBoucherSalarialMesAct->suma);
 
             $itemsBoucherSalarialMesAct16 = DB::table("item_boucher_pago", "ibp")
             ->selectRaw("Sum(ibp.valor) as suma")
@@ -15780,7 +15780,7 @@ class NominaController extends Controller
             ->where("ln.idLiquidacionNomina","<>",$idLiquidacionNomina)
             ->where("gcc.fkGrupoConcepto","=","11") //11 - Salarial Prima
             ->first();
-            $salarial = $salarial + ($itemsBoucherSalarialMesAct16->suma ?? 0);
+            $salarial = $salarial + round($itemsBoucherSalarialMesAct16->suma ?? 0);
         }  
 
         if($periodo == 15 && !isset($liquidacionMesActual)){
@@ -15796,7 +15796,7 @@ class NominaController extends Controller
                 ->where("ln.idLiquidacionNomina","<>",$idLiquidacionNomina)
                 ->where("gcc.fkGrupoConcepto","=","11") //11 - Salarial Prima
                 ->first();
-                $salarial = $salarial + ($itemsBoucherSalarialMesAct16->suma ?? 0);
+                $salarial = $salarial + round($itemsBoucherSalarialMesAct16->suma ?? 0);
             }
         }
 
@@ -15831,7 +15831,7 @@ class NominaController extends Controller
                     ->where("bp.fkLiquidacion","=",$liquidacionAnt->idLiquidacionNomina)                        
                     ->where("gcc.fkGrupoConcepto","=","11") //11 - Salarial Prima
                     ->first();
-                    $salarial = $salarial + $itemsBoucherSalarialMesAnt->suma;
+                    $salarial = $salarial + round($itemsBoucherSalarialMesAnt->suma);
                 }
             }
         }
@@ -16153,9 +16153,9 @@ class NominaController extends Controller
             ->where("gcc.fkGrupoConcepto","=","11") //11 - Salarial
             ->get();
             
-            
+
             $salarialPrima = $salarial + $itemsBoucherSalarialMesesAnteriores->suma;
-            
+            //
             
             $totalPeriodoPagoReal = $this->days_360($fechaInicialPrima, $fechaFinalPrima);
             $totalPeriodoPagoReal++;
@@ -16166,8 +16166,8 @@ class NominaController extends Controller
             }            
             
             //FIN CALCULAR EL PROMEDIO SALARIAL EN PERIODO ACTUAL      
-            $basePrima = $salarioPrima + $salarialPrima;              
-            
+            //dd($salarioPrima, $salarialPrima);
+            $basePrima = $salarioPrima + $salarialPrima;
             $liquidacionPrima = ($basePrima / 360) * $totalPeriodoPagoReal;
             $totalPeriodoPago = $totalPeriodoPagoReal;
         }
