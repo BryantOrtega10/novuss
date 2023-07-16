@@ -561,7 +561,7 @@ class AdminCorreosController extends Controller
                 if(isset($empleado->correo2) && !empty($empleado->correo2)){
 
                     $mailable = new ComprobantesPagoMail($mensaje->asunto, $mensaje->html, $sender_mail, $sender_name, $pdf);
-                    $mailer->to($empleado->correo2)->send($mailable);
+                    //$mailer->to($empleado->correo2)->send($mailable);
                     return response()->json([
                         "success" => true
                     ]);
@@ -577,10 +577,10 @@ class AdminCorreosController extends Controller
             else{
 
                 $mailable = new ComprobantesPagoMail($mensaje->asunto, $mensaje->html, $sender_mail, $sender_name, $pdf);
-                $mailer->to($empleado->correo)->send($mailable);
+                //$mailer->to($empleado->correo)->send($mailable);
 
                 if(isset($empleado->correo2) && !empty($empleado->correo2)){
-                    $mailer->to($empleado->correo2)->send($mailable);
+                    //$mailer->to($empleado->correo2)->send($mailable);
                 }
                 return response()->json([
                     "success" => true
@@ -800,7 +800,7 @@ class AdminCorreosController extends Controller
             }
             else{
                 $mailable = new MensajeGeneralMail($mensaje->asunto, $mensaje->html, $sender_mail, $sender_name);
-                $mailer->to($empleado->correo)->send($mailable);
+                //$mailer->to($empleado->correo)->send($mailable);
                 return response()->json([
                     "success" => true,
                     "msj" => $mensaje->html

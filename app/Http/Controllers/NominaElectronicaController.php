@@ -471,7 +471,9 @@ class NominaElectronicaController extends Controller
                 $conceptoSalario = DB::table("conceptofijo")
                 ->where("fkEmpleado","=",$empleado->idempleado)
                 ->where("fkPeriodoActivo","=",$empleado->idPeriodo)
-                ->whereIn("fkConcepto",[1,2,53,54,154])->first();
+                ->whereIn("fkConcepto",[1,2,53,54,154])
+                ->orderBy("idConceptoFijo","desc")
+                ->first();
                 $empleado->salarioPeriodoPago = $conceptoSalario->valor;
             } 
 

@@ -49,3 +49,69 @@
 [2023-07-04 17:01:38] local.INFO: El usuario bryant ha iniciado sesión  
 [2023-07-04 17:01:39] local.INFO: El usuario bryant, ingresó al menu de empleados  
 [2023-07-04 17:01:42] local.INFO: El usuario bryant, ingresó al menu de empleados  
+[2023-07-05 16:12:23] local.INFO: El usuario bryant ha iniciado sesión  
+[2023-07-05 16:12:24] local.INFO: El usuario bryant, ingresó al menu de empleados  
+[2023-07-05 16:12:35] local.INFO: El usuario bryant, ingresó al menu 'Enviar correos'  
+[2023-07-05 16:17:23] local.INFO: El usuario bryant, ingresó a la acción 'Ver solicitud de liquidacion sin editar' con id:4990  
+[2023-07-06 12:41:47] local.INFO: El usuario bryant ha iniciado sesión  
+[2023-07-06 12:41:49] local.INFO: El usuario bryant, ingresó al menu de empleados  
+[2023-07-06 12:43:48] local.INFO: El usuario bryant, ingresó al menu reporte contable  
+[2023-07-06 12:43:59] local.INFO: El usuario bryant, generó un reporte contable  
+[2023-07-06 12:44:06] local.INFO: El usuario bryant, generó un reporte contable  
+[2023-07-06 12:47:40] local.INFO: El usuario bryant, ingresó al menu de conceptos  
+[2023-07-06 13:37:04] local.INFO: El usuario bryant ha iniciado sesión  
+[2023-07-06 13:37:06] local.INFO: El usuario bryant, ingresó al menu de empleados  
+[2023-07-06 13:37:17] local.INFO: El usuario bryant, ingresó al menu 'Documento seguridad social'  
+[2023-07-06 13:37:48] local.INFO: El usuario bryant, generó un 'Documento seguridad social' de la fecha:2023-06-30, para la empresa:11  
+[2023-07-06 13:45:51] local.INFO: El usuario bryant, ingresó al menu de empleados  
+[2023-07-06 13:46:01] local.INFO: El usuario bryant, ingresó al menu de empleados  
+[2023-07-06 13:46:04] local.INFO: El usuario bryant, ingresó al menu de modificar empleado  
+[2023-07-06 13:46:21] local.INFO: El usuario bryant, ingresó al menu 'Liquidaciones terminadas'  
+[2023-07-06 13:46:25] local.INFO: El usuario bryant, ingresó al menu 'Liquidaciones terminadas'  
+[2023-07-06 13:46:29] local.INFO: El usuario bryant, ingresó a la acción 'Ver solicitud de liquidacion sin editar' con id:4935  
+[2023-07-06 13:46:39] local.INFO: El usuario bryant, ingresó a la acción 'Ver solicitud de liquidacion sin editar' con id:4935  
+[2023-07-06 13:46:42] local.INFO: El usuario bryant, ingresó a la acción 'Ver detalles de liquidacion' para el comprobante de pago:104542  
+[2023-07-06 13:51:03] local.INFO: El usuario bryant, generó un 'Documento seguridad social' de la fecha:2023-06-30, para la empresa:11  
+[2023-07-06 13:53:32] local.INFO: El usuario bryant, unió la SS y la contabilidad de la liquidacion:4935  
+[2023-07-06 13:53:50] local.INFO: El usuario bryant, ingresó al menu reporte contable  
+[2023-07-06 13:53:54] local.INFO: El usuario bryant, generó un reporte contable  
+[2023-07-06 13:55:36] local.INFO: El usuario bryant, ingresó al menu reporte contable  
+[2023-07-06 14:00:43] local.INFO: El usuario bryant, ingresó a la acción 'Ver solicitud de liquidacion sin editar' con id:4935  
+[2023-07-06 14:00:45] local.INFO: El usuario bryant, ingresó a la acción 'Ver solicitud de liquidacion sin editar' con id:4825  
+[2023-07-06 14:02:23] local.INFO: El usuario bryant, ingresó al menu de catalogo contable  
+[2023-07-06 14:02:27] local.INFO: El usuario bryant, ingresó al menu de catalogo contable  
+[2023-07-06 14:02:29] local.INFO: El usuario bryant, ingresó al menu de catalogo contable  
+[2023-07-06 14:02:33] local.INFO: El usuario bryant, ingresó al menu de catalogo contable  
+[2023-07-06 14:10:12] local.INFO: El usuario bryant, ingresó a la acción 'Ver detalles de liquidacion' para el comprobante de pago:104542  
+[2023-07-14 14:50:41] local.INFO: El usuario bryant ha iniciado sesión  
+[2023-07-14 14:50:42] local.INFO: El usuario bryant, ingresó al menu de empleados  
+[2023-07-14 14:51:08] local.INFO: El usuario bryant, ingresó al menu 'Solicitudes de liquidacion'  
+[2023-07-14 14:51:12] local.INFO: El usuario bryant, ingresó al menu 'Liquidaciones terminadas'  
+[2023-07-14 14:51:22] local.INFO: El usuario bryant, ingresó al menu de 'Notificaciones'  
+[2023-07-14 14:51:23] local.INFO: El usuario bryant, ingresó al menu de empleados  
+[2023-07-14 14:51:24] local.INFO: El usuario bryant, ingresó al menu de empleados  
+[2023-07-14 14:51:35] local.INFO: El usuario bryant, ingresó al menu 'Liquidaciones terminadas'  
+[2023-07-14 14:51:35] local.INFO: El usuario bryant, ingresó al menu 'Liquidaciones terminadas'  
+[2023-07-14 21:15:08] local.INFO: El usuario bryant ha iniciado sesión  
+[2023-07-14 21:15:09] local.INFO: El usuario bryant, ingresó al menu de empleados  
+[2023-07-14 21:15:17] local.INFO: El usuario bryant, ingresó al menu 'Nómina electrónica'  
+[2023-07-14 16:15:55] local.INFO: El usuario bryant, generó un reporte de nómina electrónica, tipo de reporte:JSON  
+[2023-07-16 15:37:13] local.INFO: El usuario bryant ha iniciado sesión  
+[2023-07-16 15:37:14] local.INFO: El usuario bryant, ingresó al menu de empleados  
+[2023-07-16 15:37:21] local.INFO: El usuario bryant, ingresó al menu de empleados  
+[2023-07-16 15:37:32] local.INFO: El usuario bryant, ingresó al menu 'Reporte provisiones'  
+[2023-07-16 15:38:40] local.INFO: El usuario bryant, generó un reporte de provisiones  
+[2023-07-16 15:40:13] local.INFO: El usuario bryant, generó un reporte de provisiones  
+[2023-07-16 15:41:03] local.INFO: El usuario bryant, ingresó al menu de empleados  
+[2023-07-16 15:41:06] local.INFO: El usuario bryant, ingresó al menu de empleados  
+[2023-07-16 15:41:12] local.INFO: El usuario bryant, ingresó al menu de modificar empleado  
+[2023-07-16 15:43:22] local.INFO: El usuario bryant, ingresó al menu 'Liquidaciones terminadas'  
+[2023-07-16 15:43:33] local.INFO: El usuario bryant, ingresó al menu 'Liquidaciones terminadas'  
+[2023-07-16 15:43:36] local.INFO: El usuario bryant, ingresó a la acción 'Ver solicitud de liquidacion sin editar' con id:4950  
+[2023-07-16 15:43:45] local.INFO: El usuario bryant, ingresó a la acción 'Ver detalles de liquidacion' para el comprobante de pago:104776  
+[2023-07-16 15:44:42] local.INFO: El usuario bryant, reversó la liquidación con id:4950  
+[2023-07-16 15:44:42] local.INFO: El usuario bryant, ingresó al menu 'Solicitudes de liquidacion'  
+[2023-07-16 15:50:15] local.INFO: El usuario bryant, ingresó a la acción 'Ver solicitud de liquidacion' con id:4950  
+[2023-07-16 15:50:20] local.INFO: El usuario bryant, ingresó a la acción 'Ver detalles de liquidacion' para el comprobante de pago:104776  
+[2023-07-16 15:50:32] local.INFO: El usuario bryant, recalculó el comprobante de pago con id:104776  
+[2023-07-16 15:50:33] local.INFO: El usuario bryant, ingresó a la acción 'Ver detalles de liquidacion' para el comprobante de pago:104776  

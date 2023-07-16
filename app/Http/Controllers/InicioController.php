@@ -211,7 +211,7 @@ class InicioController extends Controller
                 
             }
             $mailable = new RecuperarPassMail($email, $token, $nomEmpre,  $sender_mail, $sender_name);
-            $mailer->to($email)->send($mailable);
+            //$mailer->to($email)->send($mailable);
             return true;
         } catch (\Exception $e) {
             var_dump($e->getMessage());

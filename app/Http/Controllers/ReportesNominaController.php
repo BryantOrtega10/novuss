@@ -8221,19 +8221,17 @@ class ReportesNominaController extends Controller
                 $variables = DB::table("variable")->where("idVariable","=","1")->first();
                 $valorSalarioMinimo = $variables->valor;
                 $porcentajeDescuento = $varAporteFondo[12];
-                if($valorSalario > ($valorSalarioMinimo * $varAporteFondo[11])){
+                if(intval($valorSalario) >= intval($valorSalarioMinimo * $varAporteFondo[11])){
                     $porcentajeDescuento = $varAporteFondo[12];
                 }
-
-                if($valorSalario > ($valorSalarioMinimo * $varAporteFondo[13])){
-
+                if(intval($valorSalario) >= intval($valorSalarioMinimo * $varAporteFondo[13])){
                     $diffSalariosMas = $valorSalario - ($valorSalarioMinimo * ($varAporteFondo[13]));
                     $number = round($diffSalariosMas  / $valorSalarioMinimo, 2);
-                    $numSalariosMas = floor($number);                    
+                    $numSalariosMas = ceil($number);
                     $porcentajeDescuento = $porcentajeDescuento + ($numSalariosMas * $varAporteFondo[14]);
                 }
 
-                if($porcentajeDescuento > $varAporteFondo[15]){
+                if($porcentajeDescuento >= $varAporteFondo[15]){
                     $porcentajeDescuento = $varAporteFondo[15];
                 }
                 
@@ -9045,17 +9043,16 @@ class ReportesNominaController extends Controller
                         $variables = DB::table("variable")->where("idVariable","=","1")->first();
                         $valorSalarioMinimo = $variables->valor;
                     
-                        if($valorSalario > ($valorSalarioMinimo * $varAporteFondo[11])){
+                        if(intval($valorSalario) >= intval($valorSalarioMinimo * $varAporteFondo[11])){
                             $porcentajeDescuento = $varAporteFondo[12];
                         }
-        
-                        if($valorSalario > ($valorSalarioMinimo * $varAporteFondo[13])){
-        
+                        if(intval($valorSalario) >= intval($valorSalarioMinimo * $varAporteFondo[13])){
                             $diffSalariosMas = $valorSalario - ($valorSalarioMinimo * ($varAporteFondo[13]));
-                            $numSalariosMas = floor($diffSalariosMas  / $valorSalarioMinimo);
+                            $number = round($diffSalariosMas  / $valorSalarioMinimo, 2);
+                            $numSalariosMas = ceil($number);
                             $porcentajeDescuento = $porcentajeDescuento + ($numSalariosMas * $varAporteFondo[14]);
                         }
-                        if($porcentajeDescuento > $varAporteFondo[15]){
+                        if($porcentajeDescuento >= $varAporteFondo[15]){
                             $porcentajeDescuento = $varAporteFondo[15];
                         }
         
@@ -9657,6 +9654,7 @@ class ReportesNominaController extends Controller
             $datosProv = $datosProv->where("p.fkConcepto","=",$req->provision);
         }
         $datosProv = $datosProv->where("n.fkEmpresa","=",$req->empresa)
+        ->where("dp.numeroIdentificacion","=","1014249072")
         ->orderBy("p.fkEmpleado")
         ->orderBy("p.fkPeriodoActivo")
         ->get();
@@ -14676,6 +14674,16 @@ class ReportesNominaController extends Controller
         $numRegistros = 0;
 
         if($req->mensaje == "4"){
+
+            if(!isset($req->nProceso) && (!isset($req->fechaInicio) || !isset($req->fechaFin))){
+                $usu = UsuarioController::dataAdminLogueado();
+                return view('layouts/respuestaGen', [
+                    "dataUsu" => $usu,
+                    "titulo" => "Seleccione fechas o número de proceso",
+                    "mensaje" => "Debes seleccionar las fechas o el número de proceso, cuando el mensaje sea de comprobante de pago"
+                ]);
+            }
+            
             $liquidacion = DB::table("boucherpago","bp")
             ->select("bp.*")
             ->join("liquidacionnomina as ln","ln.idLiquidacionNomina","=", "bp.fkLiquidacion")
@@ -14709,14 +14717,16 @@ class ReportesNominaController extends Controller
                 $nProceso = array_map('trim', $nProceso);                
                 $liquidacion = $liquidacion->whereIn("ln.idLiquidacionNomina",$nProceso);
             }
-
-            $sqlWhere = "( 
-                ('".$req->fechaInicio."' BETWEEN ln.fechaInicio AND ln.fechaFin) OR
-                ('".$req->fechaFin."' BETWEEN ln.fechaInicio AND ln.fechaFin) OR
-                (ln.fechaInicio BETWEEN '".$req->fechaInicio."' AND '".$req->fechaFin."') OR
-                (ln.fechaFin BETWEEN '".$req->fechaInicio."' AND '".$req->fechaFin."')
-            )";
-            $liquidacion = $liquidacion->whereRaw($sqlWhere);
+            if(isset($req->fechaInicio) && isset($req->fechaFin)){
+                $sqlWhere = "( 
+                    ('".$req->fechaInicio."' BETWEEN ln.fechaInicio AND ln.fechaFin) OR
+                    ('".$req->fechaFin."' BETWEEN ln.fechaInicio AND ln.fechaFin) OR
+                    (ln.fechaInicio BETWEEN '".$req->fechaInicio."' AND '".$req->fechaFin."') OR
+                    (ln.fechaFin BETWEEN '".$req->fechaInicio."' AND '".$req->fechaFin."')
+                )";
+                $liquidacion = $liquidacion->whereRaw($sqlWhere);
+            }
+            
             $liquidacion = $liquidacion->get();
             foreach($liquidacion as $liquida){
                 DB::table("item_envio_correo_reporte")->insert([
@@ -14729,6 +14739,14 @@ class ReportesNominaController extends Controller
             }            
         }
         else if($req->mensaje == "7"){
+            if(!isset($req->fechaInicio) || !isset($req->fechaFin)){
+                $usu = UsuarioController::dataAdminLogueado();
+                return view('layouts/respuestaGen', [
+                    "dataUsu" => $usu,
+                    "titulo" => "Seleccione fechas",
+                    "mensaje" => "Debes seleccionar las fechas obligatoriamente cuando el mensaje no sea de comprobante de pago"
+                ]);
+            }
 
             $anioInicio = date("Y",strtotime($req->fechaInicio));
             $anioFin = date("Y",strtotime($req->fechaFin));
@@ -14768,6 +14786,15 @@ class ReportesNominaController extends Controller
             } 
         }
         else{
+            if(!isset($req->fechaInicio) || !isset($req->fechaFin)){
+                $usu = UsuarioController::dataAdminLogueado();
+                return view('layouts/respuestaGen', [
+                    "dataUsu" => $usu,
+                    "titulo" => "Seleccione fechas",
+                    "mensaje" => "Debes seleccionar las fechas obligatoriamente cuando el mensaje no sea de comprobante de pago"
+                ]);
+            }
+            
             $empleados = DB::table("empleado","e")
             ->join("periodo as p","p.fkEmpleado","=","e.idempleado")
             ->join("nomina as n","n.idNomina","=","p.fkNomina");

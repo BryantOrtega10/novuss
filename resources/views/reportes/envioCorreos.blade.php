@@ -59,13 +59,13 @@
                     <div class="col-3">
                         <div class="form-group">
                             <label for="fechaInicio" class="control-label">Fecha Inicio</label>
-                            <input type="date" class="form-control" id="fechaInicio" required name="fechaInicio" />
+                            <input type="date" class="form-control" id="fechaInicio" name="fechaInicio" />
                         </div>
                     </div>
                     <div class="col-3">
                         <div class="form-group">
                             <label for="fechaFin" class="control-label">Fecha Fin</label>
-                            <input type="date" class="form-control" id="fechaFin" required name="fechaFin" />
+                            <input type="date" class="form-control" id="fechaFin" name="fechaFin" />
                         </div>
                     </div>
                    
