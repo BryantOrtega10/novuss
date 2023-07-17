@@ -155,6 +155,19 @@ class ProvisionesController extends Controller
                 
                 $arrResPrima = $this->calcularPrimaProv($fechaInicio, $fechaFin, $empleado, $idPeriodo, $salarioMes);
                 $liquidacionPrima = $arrResPrima["liquidacionPrima"];
+
+                $verificarSiHayPagoPrima = DB::table("item_boucher_pago", "ibp")
+                ->selectRaw("Sum(ibp.pago) as suma")
+                ->join("boucherpago as bp","bp.idBoucherPago","=","ibp.fkBoucherPago")
+                ->join("liquidacionnomina as ln","ln.idLiquidacionNomina","=","bp.fkLiquidacion")
+                ->where("bp.fkEmpleado","=",$empleado->idempleado)
+                ->where("bp.fkPeriodoActivo","=",$idPeriodo)
+                ->where("ln.fechaInicio",">=",date("Y-m-01",strtotime($fechaInicio." -30 days")))
+                ->where("ln.fechaFin","<=",date("Y-m-t",strtotime($fechaFin)))
+                ->where("ibp.fkConcepto","=","58") //58 - PRIMA DE SERVICIOS	
+                ->first();
+
+
                 $arrComoCalculaProv[58] = ($arrComoCalcula[58] ?? array());
                 array_push($arrComoCalculaProv[58], "Valor Salario: $".number_format($arrResPrima["salarioPrima"],0,",","."));
                 array_push($arrComoCalculaProv[58], "Valor promedio Salarial: $".number_format($arrResPrima["salarialPrima"],0,",","."));
@@ -162,12 +175,16 @@ class ProvisionesController extends Controller
                 array_push($arrComoCalculaProv[58], "Fecha inicial: ".$arrResPrima["fechaInicialPrima"]);
                 array_push($arrComoCalculaProv[58], "Fecha final: ".$fechaFin);
                 array_push($arrComoCalculaProv[58], "Días: ".$arrResPrima["totalPeriodoPago"]);
-                array_push($arrComoCalculaProv[58], "Valor liquidación prima: $".number_format($arrResPrima["liquidacionPrima"],0,",","."));
+                array_push($arrComoCalculaProv[58], "Valor liquidación calculado prima: $".number_format($arrResPrima["liquidacionPrima"],0,",","."));
+                if(isset($verificarSiHayPagoPrima) && $verificarSiHayPagoPrima->suma > 0){
+                    array_push($arrComoCalculaProv[58], "Valor liquidación prima pagado: $".number_format($verificarSiHayPagoPrima->suma,0,",",".")." se toma esta liquidación");
+                    $liquidacionPrima = $verificarSiHayPagoPrima->suma;
+                }
                 
                 $mesActual = date("m",strtotime($fechaInicio));
                 $anioActual = date("Y",strtotime($fechaInicio));    
                 if($tipoliquidacion != "7" && $tipoliquidacion != "10" && $tipoliquidacion != "11" && $tipoliquidacion != "8"){
-                    if($mesActual >= 1 && $mesActual <= 6){            
+                    if($mesActual >= 1 && $mesActual <= 6){
                         $historicoProvisionPrima = DB::table("provision","p")
                         ->selectRaw("sum(p.valor) as sumaValor")
                         ->where("p.fkEmpleado","=",$empleado->idempleado)
@@ -602,9 +619,18 @@ class ProvisionesController extends Controller
                     $base3036Dias = $baseUnDiaCes;
                     $liquidacionCesantias = ($base3036Dias*$diasCes);
                     $liquidacionCesantias = round($liquidacionCesantias);
-                    
-                    $arrComoCalculaProv[66] = array();
 
+                    $verificarSiHayPagoCesantias = DB::table("item_boucher_pago", "ibp")
+                    ->selectRaw("Sum(ibp.pago) as suma")
+                    ->join("boucherpago as bp","bp.idBoucherPago","=","ibp.fkBoucherPago")
+                    ->join("liquidacionnomina as ln","ln.idLiquidacionNomina","=","bp.fkLiquidacion")
+                    ->where("bp.fkEmpleado","=",$empleado->idempleado)
+                    ->where("bp.fkPeriodoActivo","=",$idPeriodo)
+                    ->where("ln.fechaInicio",">=",date("Y-m-01",strtotime($fechaInicio." -30 days")))
+                    ->where("ln.fechaFin","<=",date("Y-m-t",strtotime($fechaFin)))
+                    ->where("ibp.fkConcepto","=","66") //66 - CES
+                    ->first();
+                    $arrComoCalculaProv[66] = array();
                     array_push($arrComoCalculaProv[66], "Valor Salario: $".number_format($salarioCes,0,",","."));
                     array_push($arrComoCalculaProv[66], "Valor promedio Salarial: $".number_format($salarialCes,0,",","."));
                     array_push($arrComoCalculaProv[66], "Valor Base: $".number_format($baseCes,0,",","."));
@@ -613,7 +639,10 @@ class ProvisionesController extends Controller
                     array_push($arrComoCalculaProv[66], "Días: ".$totalPeriodoPagoAnioActualReal);
                     array_push($arrComoCalculaProv[66], "Nómina configurada a: ".$nomina->diasCesantias." días de cesantias por año");
                     array_push($arrComoCalculaProv[66], "Valor liquidación : $".number_format($liquidacionCesantias,0,",","."));
-
+                    if(isset($verificarSiHayPagoCesantias) && $verificarSiHayPagoCesantias->suma > 0){
+                        array_push($arrComoCalculaProv[66], "Valor liquidación pagado: $".number_format($verificarSiHayPagoCesantias->suma,0,",",".")." se toma esta liquidación");
+                        $liquidacionCesantias = $verificarSiHayPagoCesantias->suma;
+                    }
 
                     
                     $historicoProvisionCesantias = DB::table("provision","p")

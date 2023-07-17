@@ -2344,8 +2344,10 @@ class NominaController extends Controller
         foreach($novedadesRetiro as $novedadRetiro){
 
             $salarioCf = DB::table("conceptofijo", "cf")
-            ->where("cf.fkEmpleado","=",$novedadRetiro->fkEmpleado)
-            ->whereIn("cf.fkConcepto",["1","2","53","54","154"])->first();
+            ->where("cf.fkPeriodoActivo","=",$novedadRetiro->fkPeriodoActivo)
+            ->whereIn("cf.fkConcepto",["1","2","53","54","154"])
+            ->orderBy("idConceptoFijo","desc")
+            ->first();
 
             $empleado = DB::table("empleado", "e")->where("e.idempleado","=",$novedadRetiro->fkEmpleado)->first();
             $contrato = DB::table("contrato","con")->where("con.fkPeriodoActivo","=",$novedadRetiro->fkPeriodoActivo)
@@ -10466,7 +10468,7 @@ class NominaController extends Controller
                             $arrValorxConcepto[58]["naturaleza"] =  "1";
                             $arrValorxConcepto[58]["unidad"] =  "DÍA";
                             $arrValorxConcepto[58]["cantidad"] = $totalPeriodoPago + $diasAgregar;
-                            $arrValorxConcepto[58]["arrNovedades"] = array();
+                            //$arrValorxConcepto[58]["arrNovedades"] = array();
                             $arrValorxConcepto[58]["arrSaldo"] = $arrSaldo;
                             $arrValorxConcepto[58]["tipoGen"] = "automaticos";
                             $arrValorxConcepto[58]["base"] = $basePrima;
@@ -10559,7 +10561,7 @@ class NominaController extends Controller
                         $arrValorxConcepto[58]["naturaleza"] =  "1";
                         $arrValorxConcepto[58]["unidad"] =  "DÍA";
                         $arrValorxConcepto[58]["cantidad"] = $totalPeriodoPago + $diasAgregar;
-                        $arrValorxConcepto[58]["arrNovedades"] = array();
+                        //$arrValorxConcepto[58]["arrNovedades"] = array();
                         $arrValorxConcepto[58]["arrSaldo"] = $arrSaldo;
                         $arrValorxConcepto[58]["tipoGen"] = "automaticos";
                         $arrValorxConcepto[58]["base"] = $basePrima;
