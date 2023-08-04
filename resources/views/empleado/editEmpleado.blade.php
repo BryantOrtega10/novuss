@@ -1847,7 +1847,7 @@
                                 ($empleado->fkTipoCotizante != "12" && $empleado->fkTipoCotizante != "19" && $empleado->fkTipoCotizante != "23" &&$num == 3) ||
                                 ($empleado->esPensionado == 0 && $empleado->fkTipoCotizante != "12" && $empleado->fkTipoCotizante != "19" && $empleado->fkTipoCotizante != "23" && $num == 4) ||
                                 $num > 4
-                                || $afiliaciones[$num - 1]->fkTipoAfilicacion == 3
+                                || ($afiliaciones[$num - 1]->fkTipoAfilicacion == 3 && $empleado->fkTipoCotizante != "23")
                             )
                             <div class="afiliacion" data-id="{{$num}}">
                                 @if ($num>4)

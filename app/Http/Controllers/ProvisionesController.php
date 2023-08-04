@@ -162,7 +162,7 @@ class ProvisionesController extends Controller
                 ->join("liquidacionnomina as ln","ln.idLiquidacionNomina","=","bp.fkLiquidacion")
                 ->where("bp.fkEmpleado","=",$empleado->idempleado)
                 ->where("bp.fkPeriodoActivo","=",$idPeriodo)
-                ->where("ln.fechaInicio",">=",date("Y-m-01",strtotime($fechaInicio." -30 days")))
+                ->where("ln.fechaInicio",">=",date("Y-m-01",strtotime($fechaInicio)))
                 ->where("ln.fechaFin","<=",date("Y-m-t",strtotime($fechaFin)))
                 ->where("ibp.fkConcepto","=","58") //58 - PRIMA DE SERVICIOS	
                 ->first();
@@ -626,7 +626,7 @@ class ProvisionesController extends Controller
                     ->join("liquidacionnomina as ln","ln.idLiquidacionNomina","=","bp.fkLiquidacion")
                     ->where("bp.fkEmpleado","=",$empleado->idempleado)
                     ->where("bp.fkPeriodoActivo","=",$idPeriodo)
-                    ->where("ln.fechaInicio",">=",date("Y-m-01",strtotime($fechaInicio." -30 days")))
+                    ->where("ln.fechaInicio",">=",date("Y-m-01",strtotime($fechaInicio)))
                     ->where("ln.fechaFin","<=",date("Y-m-t",strtotime($fechaFin)))
                     ->where("ibp.fkConcepto","=","66") //66 - CES
                     ->first();
@@ -1000,9 +1000,11 @@ class ProvisionesController extends Controller
                     $saldoVacaciones = DB::table("saldo")
                     ->where("fkPeriodoActivo","=",$idPeriodo)
                     ->where("anioAnterior","=",date("Y",strtotime($fechaInicio)))
-                    ->where("fkConcepto","=", "74")
-                    ->where("fkEstado","=","7")
-                    ->first();
+                    ->where("fkConcepto","=", "74");
+                    if(isset($novedadesRetiro)){
+                        $saldoVacaciones = $saldoVacaciones->where("fkEstado","=","8")->orderBy("idSaldo","desc");
+                    }                    
+                    $saldoVacaciones = $saldoVacaciones->first();
                     
                     
                     $pagoVacacionesItems = DB::table("item_boucher_pago", "ibp")

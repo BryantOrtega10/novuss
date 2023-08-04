@@ -3328,6 +3328,9 @@ class EmpleadoController extends Controller
         ->where("fkPeriodoActivo","=",$periodoActivo->idPeriodo)
         ->get();
         $arrTipoAfiliacion = array("3");
+        if($empleado->fkTipoCotizante != 23){
+            $arrTipoAfiliacion = [];
+        }        
         
        
         if($empleado->fkTipoCotizante == 1){
@@ -3646,7 +3649,9 @@ class EmpleadoController extends Controller
         ->get();
 
         $arrTipoAfiliacion = array("3");
-        
+        if($empleado->fkTipoCotizante != 23){
+            $arrTipoAfiliacion = [];
+        }       
 
         
         
