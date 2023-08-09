@@ -1582,7 +1582,7 @@
                 </div>
                 <div class="afiliacionesCont">
                     <input type="hidden" name="idsAfiliacionEliminar" id="idsAfiliacionEliminar" value="" />
-                    @if (sizeof($afiliaciones)>0)
+                    @if (sizeof($afiliaciones)>0 && $empleado->fkTipoCotizante != "23")
                         @for ($num = 1; $num <= sizeof($afiliaciones); $num++)          
                             
                             <div class="afiliacion" data-id="{{$num}}">
@@ -1671,173 +1671,66 @@
                             </div>
                         @endfor
                     @else
-                        <div class="afiliacion" data-id="1">
-                            <div class="row">
-                                <div class="col-3">
-                                    <div class="form-group hasText">
-                                        <label for="afiliacionTipoAfilicacion1" class="control-label">Tipo afiliación *</label>
-                                        @foreach ($tipoafilicaciones as $tipoafilicacion)
-                                            @if ($tipoafilicacion->idTipoAfiliacion == 1)
-                                                <input type="text" readonly class="form-control" value="{{$tipoafilicacion->nombre}}" readonly/>
-                                                <input type="hidden" name="afiliacionTipoAfilicacion[]" value="{{$tipoafilicacion->idTipoAfiliacion}}" />
-                                            @endif
-                                        @endforeach                                        
-                                    </div>
-                                </div>
-                                <div class="col-3">
-                                    <div class="form-group">
-                                        <label for="afiliacionEntidad1" class="control-label">Entidad *</label>
-                                        <select disabled class="form-control" id="afiliacionEntidad1" name="afiliacionEntidad[]">
-                                            <option value=""></option>
-                                            @foreach ($afiliacionesEnt1 as $afiliacionesEntidad1)
-                                                <option value="{{$afiliacionesEntidad1->idTercero}}">{{$afiliacionesEntidad1->razonSocial}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-3">
-                                    <div class="form-group @isset($empleado->fechaIngreso) hasText @endisset">
-                                        <label for="afiliacionFecha1" class="control-label">Fecha Afiliación *</label>
-                                        <input type="date" readonly class="form-control" id="afiliacionFecha1" name="afiliacionFecha[]"  value="{{$empleado->fechaIngreso}}" />
-                                    </div>
-                                </div>
-                                
-                            </div>
-                            <div class="row cambioAfiliacion" data-id="1">
-                                <div class="col-3">
-                                    <div class="form-group">
-                                        <label for="afiliaFechaInicioCambio1" class="control-label">Fecha cambio Inicio</label>
-                                        <input type="date" readonly class="form-control" id="afiliaFechaInicioCambio1" name="afiliaFechaInicioCambio[]" />
-                                    </div>
-                                </div>
-                                <div class="col-3">
-                                    <div class="form-group">
-                                        <label for="afiliacionEntidadNueva1" class="control-label">Entidad *</label>
-                                        <select disabled class="form-control" id="afiliacionEntidadNueva1" name="afiliacionEntidadNueva[]">
-                                            <option value=""></option>
-                                            @foreach ($afiliacionesEnt1 as $afiliacionesEntidad1)
-                                                <option value="{{$afiliacionesEntidad1->idTercero}}">{{$afiliacionesEntidad1->razonSocial}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="afiliacion" data-id="2">
-                            <div class="row">
-                                <div class="col-3">
-                                    <div class="form-group hasText">
-                                        <label for="afiliacionTipoAfilicacion2" class="control-label">Tipo afiliación *</label>
-                                        @foreach ($tipoafilicaciones as $tipoafilicacion)
-                                            @if ($tipoafilicacion->idTipoAfiliacion == 2)
-                                                <input type="text" readonly class="form-control" value="{{$tipoafilicacion->nombre}}" readonly/>
-                                                <input type="hidden" name="afiliacionTipoAfilicacion[]" value="{{$tipoafilicacion->idTipoAfiliacion}}" />
-                                            @endif
-                                        @endforeach
-                                    </div>
-                                </div>
-                                <div class="col-3">
-                                    <div class="form-group">
-                                        <label for="afiliacionEntidad2" class="control-label">Entidad *</label>
-                                        <select disabled class="form-control" id="afiliacionEntidad2" name="afiliacionEntidad[]">
-                                            <option value=""></option>
-                                            @foreach ($afiliacionesEnt2 as $afiliacionesEntidad2)
-                                                <option value="{{$afiliacionesEntidad2->idTercero}}">{{$afiliacionesEntidad2->razonSocial}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-3">
-                                    <div class="form-group @isset($empleado->fechaIngreso) hasText @endisset">
-                                        <label for="afiliacionFecha2" class="control-label">Fecha Afiliación *</label>
-                                        <input type="date" readonly class="form-control" id="afiliacionFecha2" name="afiliacionFecha[]"  value="{{$empleado->fechaIngreso}}" />
-                                    </div>
-                                </div>
-                                
-                            </div>
-                            <div class="row cambioAfiliacion" data-id="2">
-                                <div class="col-3">
-                                    <div class="form-group">
-                                        <label for="afiliaFechaInicioCambio2" class="control-label">Fecha cambio Inicio</label>
-                                        <input type="date" readonly class="form-control" id="afiliaFechaInicioCambio2" name="afiliaFechaInicioCambio[]" />
-                                    </div>
-                                </div>
-                                <div class="col-3">
-                                    <div class="form-group">
-                                        <label for="afiliacionEntidadNueva2" class="control-label">Entidad *</label>
-                                        <select disabled class="form-control" id="afiliacionEntidadNueva2" name="afiliacionEntidadNueva[]">
-                                            <option value=""></option>
-                                            @foreach ($afiliacionesEnt2 as $afiliacionesEntidad2)
-                                                <option value="{{$afiliacionesEntidad2->idTercero}}">{{$afiliacionesEntidad2->razonSocial}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="afiliacion" data-id="3">
-                            <div class="row">
-                                <div class="col-3">
-                                    <div class="form-group hasText">
-                                        <label for="afiliacionTipoAfilicacion3" class="control-label">Tipo afiliación *</label>
-                                        @foreach ($tipoafilicaciones as $tipoafilicacion)
-                                            @if ($tipoafilicacion->idTipoAfiliacion == 3)
-                                                <input type="text" readonly class="form-control" value="{{$tipoafilicacion->nombre}}" readonly/>
-                                                <input type="hidden" name="afiliacionTipoAfilicacion[]" value="{{$tipoafilicacion->idTipoAfiliacion}}" />
-                                            @endif
-                                        @endforeach
-                                    </div>
-                                </div>
-                                <div class="col-3">
-                                    <div class="form-group">
-                                        <label for="afiliacionEntidad3" class="control-label">Entidad *</label>
-                                        <select disabled class="form-control" id="afiliacionEntidad3" name="afiliacionEntidad[]">
-                                            <option value=""></option>
-                                            @foreach ($afiliacionesEnt3 as $afiliacionesEntidad3)
-                                                <option value="{{$afiliacionesEntidad3->idTercero}}">{{$afiliacionesEntidad3->razonSocial}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-3">
-                                    <div class="form-group @isset($empleado->fechaIngreso) hasText @endisset">
-                                        <label for="afiliacionFecha3" class="control-label">Fecha Afiliación *</label>
-                                    <input type="date" readonly class="form-control" id="afiliacionFecha3" name="afiliacionFecha[]" value="{{$empleado->fechaIngreso}}" />
-                                    </div>
-                                </div>
-                                
-                            </div>
-                            <div class="row cambioAfiliacion" data-id="3">
-                                
-                                <div class="col-3">
-                                    <div class="form-group">
-                                        <label for="afiliaFechaInicioCambio3" class="control-label">Fecha cambio Inicio</label>
-                                        <input type="date" readonly class="form-control" id="afiliaFechaInicioCambio3" name="afiliaFechaInicioCambio[]" />
-                                    </div>
-                                </div>
-
-                                <div class="col-3">
-                                    <div class="form-group">
-                                        <label for="afiliacionEntidadNueva3" class="control-label">Entidad *</label>
-                                        <select disabled class="form-control" id="afiliacionEntidadNueva3" name="afiliacionEntidadNueva[]">
-                                            <option value=""></option>
-                                            @foreach ($afiliacionesEnt3 as $afiliacionesEntidad3)
-                                                <option value="{{$afiliacionesEntidad3->idTercero}}">{{$afiliacionesEntidad3->razonSocial}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                        @if ($empleado->esPensionado == 0)
-                            <div class="afiliacion" data-id="4">
+                        @if ($empleado->fkTipoCotizante != "23")
+                            <div class="afiliacion" data-id="1">
                                 <div class="row">
                                     <div class="col-3">
                                         <div class="form-group hasText">
-                                            <label for="afiliacionTipoAfilicacion4" class="control-label">Tipo afiliación *</label>
+                                            <label for="afiliacionTipoAfilicacion1" class="control-label">Tipo afiliación *</label>
                                             @foreach ($tipoafilicaciones as $tipoafilicacion)
-                                                @if ($tipoafilicacion->idTipoAfiliacion == 4)
+                                                @if ($tipoafilicacion->idTipoAfiliacion == 1)
+                                                    <input type="text" readonly class="form-control" value="{{$tipoafilicacion->nombre}}" readonly/>
+                                                    <input type="hidden" name="afiliacionTipoAfilicacion[]" value="{{$tipoafilicacion->idTipoAfiliacion}}" />
+                                                @endif
+                                            @endforeach                                        
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="form-group">
+                                            <label for="afiliacionEntidad1" class="control-label">Entidad *</label>
+                                            <select disabled class="form-control" id="afiliacionEntidad1" name="afiliacionEntidad[]">
+                                                <option value=""></option>
+                                                @foreach ($afiliacionesEnt1 as $afiliacionesEntidad1)
+                                                    <option value="{{$afiliacionesEntidad1->idTercero}}">{{$afiliacionesEntidad1->razonSocial}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="form-group @isset($empleado->fechaIngreso) hasText @endisset">
+                                            <label for="afiliacionFecha1" class="control-label">Fecha Afiliación *</label>
+                                            <input type="date" readonly class="form-control" id="afiliacionFecha1" name="afiliacionFecha[]"  value="{{$empleado->fechaIngreso}}" />
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <div class="row cambioAfiliacion" data-id="1">
+                                    <div class="col-3">
+                                        <div class="form-group">
+                                            <label for="afiliaFechaInicioCambio1" class="control-label">Fecha cambio Inicio</label>
+                                            <input type="date" readonly class="form-control" id="afiliaFechaInicioCambio1" name="afiliaFechaInicioCambio[]" />
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="form-group">
+                                            <label for="afiliacionEntidadNueva1" class="control-label">Entidad *</label>
+                                            <select disabled class="form-control" id="afiliacionEntidadNueva1" name="afiliacionEntidadNueva[]">
+                                                <option value=""></option>
+                                                @foreach ($afiliacionesEnt1 as $afiliacionesEntidad1)
+                                                    <option value="{{$afiliacionesEntidad1->idTercero}}">{{$afiliacionesEntidad1->razonSocial}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="afiliacion" data-id="2">
+                                <div class="row">
+                                    <div class="col-3">
+                                        <div class="form-group hasText">
+                                            <label for="afiliacionTipoAfilicacion2" class="control-label">Tipo afiliación *</label>
+                                            @foreach ($tipoafilicaciones as $tipoafilicacion)
+                                                @if ($tipoafilicacion->idTipoAfiliacion == 2)
                                                     <input type="text" readonly class="form-control" value="{{$tipoafilicacion->nombre}}" readonly/>
                                                     <input type="hidden" name="afiliacionTipoAfilicacion[]" value="{{$tipoafilicacion->idTipoAfiliacion}}" />
                                                 @endif
@@ -1846,45 +1739,153 @@
                                     </div>
                                     <div class="col-3">
                                         <div class="form-group">
-                                            <label for="afiliacionEntidad4" class="control-label">Entidad *</label>
-                                            <select disabled class="form-control" id="afiliacionEntidad4" name="afiliacionEntidad[]">
+                                            <label for="afiliacionEntidad2" class="control-label">Entidad *</label>
+                                            <select disabled class="form-control" id="afiliacionEntidad2" name="afiliacionEntidad[]">
                                                 <option value=""></option>
-                                                @foreach ($afiliacionesEnt4 as $afiliacionesEntidad4)
-                                                    <option value="{{$afiliacionesEntidad4->idTercero}}">{{$afiliacionesEntidad4->razonSocial}}</option>
+                                                @foreach ($afiliacionesEnt2 as $afiliacionesEntidad2)
+                                                    <option value="{{$afiliacionesEntidad2->idTercero}}">{{$afiliacionesEntidad2->razonSocial}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-3">
                                         <div class="form-group @isset($empleado->fechaIngreso) hasText @endisset">
-                                            <label for="afiliacionFecha4" class="control-label">Fecha Afiliación *</label>
-                                            <input type="date" readonly class="form-control" id="afiliacionFecha4" name="afiliacionFecha[]"  value="{{$empleado->fechaIngreso}}" />
+                                            <label for="afiliacionFecha2" class="control-label">Fecha Afiliación *</label>
+                                            <input type="date" readonly class="form-control" id="afiliacionFecha2" name="afiliacionFecha[]"  value="{{$empleado->fechaIngreso}}" />
                                         </div>
                                     </div>
                                     
                                 </div>
-                                <div class="row cambioAfiliacion" data-id="4">
+                                <div class="row cambioAfiliacion" data-id="2">
                                     <div class="col-3">
                                         <div class="form-group">
-                                            <label for="afiliaFechaInicioCambio4" class="control-label">Fecha cambio Inicio</label>
-                                            <input type="date" readonly class="form-control" id="afiliaFechaInicioCambio4" name="afiliaFechaInicioCambio[]" />
+                                            <label for="afiliaFechaInicioCambio2" class="control-label">Fecha cambio Inicio</label>
+                                            <input type="date" readonly class="form-control" id="afiliaFechaInicioCambio2" name="afiliaFechaInicioCambio[]" />
                                         </div>
                                     </div>
                                     <div class="col-3">
                                         <div class="form-group">
-                                            <label for="afiliacionEntidadNueva4" class="control-label">Entidad *</label>
-                                            <select disabled class="form-control" id="afiliacionEntidadNueva4" name="afiliacionEntidadNueva[]">
+                                            <label for="afiliacionEntidadNueva2" class="control-label">Entidad *</label>
+                                            <select disabled class="form-control" id="afiliacionEntidadNueva2" name="afiliacionEntidadNueva[]">
                                                 <option value=""></option>
-                                                @foreach ($afiliacionesEnt4 as $afiliacionesEntidad4)
-                                                    <option value="{{$afiliacionesEntidad4->idTercero}}">{{$afiliacionesEntidad4->razonSocial}}</option>
+                                                @foreach ($afiliacionesEnt2 as $afiliacionesEntidad2)
+                                                    <option value="{{$afiliacionesEntidad2->idTercero}}">{{$afiliacionesEntidad2->razonSocial}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            <div class="afiliacion" data-id="3">
+                                <div class="row">
+                                    <div class="col-3">
+                                        <div class="form-group hasText">
+                                            <label for="afiliacionTipoAfilicacion3" class="control-label">Tipo afiliación *</label>
+                                            @foreach ($tipoafilicaciones as $tipoafilicacion)
+                                                @if ($tipoafilicacion->idTipoAfiliacion == 3)
+                                                    <input type="text" readonly class="form-control" value="{{$tipoafilicacion->nombre}}" readonly/>
+                                                    <input type="hidden" name="afiliacionTipoAfilicacion[]" value="{{$tipoafilicacion->idTipoAfiliacion}}" />
+                                                @endif
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="form-group">
+                                            <label for="afiliacionEntidad3" class="control-label">Entidad *</label>
+                                            <select disabled class="form-control" id="afiliacionEntidad3" name="afiliacionEntidad[]">
+                                                <option value=""></option>
+                                                @foreach ($afiliacionesEnt3 as $afiliacionesEntidad3)
+                                                    <option value="{{$afiliacionesEntidad3->idTercero}}">{{$afiliacionesEntidad3->razonSocial}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="form-group @isset($empleado->fechaIngreso) hasText @endisset">
+                                            <label for="afiliacionFecha3" class="control-label">Fecha Afiliación *</label>
+                                        <input type="date" readonly class="form-control" id="afiliacionFecha3" name="afiliacionFecha[]" value="{{$empleado->fechaIngreso}}" />
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <div class="row cambioAfiliacion" data-id="3">
+                                    
+                                    <div class="col-3">
+                                        <div class="form-group">
+                                            <label for="afiliaFechaInicioCambio3" class="control-label">Fecha cambio Inicio</label>
+                                            <input type="date" readonly class="form-control" id="afiliaFechaInicioCambio3" name="afiliaFechaInicioCambio[]" />
+                                        </div>
+                                    </div>
+
+                                    <div class="col-3">
+                                        <div class="form-group">
+                                            <label for="afiliacionEntidadNueva3" class="control-label">Entidad *</label>
+                                            <select disabled class="form-control" id="afiliacionEntidadNueva3" name="afiliacionEntidadNueva[]">
+                                                <option value=""></option>
+                                                @foreach ($afiliacionesEnt3 as $afiliacionesEntidad3)
+                                                    <option value="{{$afiliacionesEntidad3->idTercero}}">{{$afiliacionesEntidad3->razonSocial}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            @if ($empleado->esPensionado == 0)
+                                <div class="afiliacion" data-id="4">
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <div class="form-group hasText">
+                                                <label for="afiliacionTipoAfilicacion4" class="control-label">Tipo afiliación *</label>
+                                                @foreach ($tipoafilicaciones as $tipoafilicacion)
+                                                    @if ($tipoafilicacion->idTipoAfiliacion == 4)
+                                                        <input type="text" readonly class="form-control" value="{{$tipoafilicacion->nombre}}" readonly/>
+                                                        <input type="hidden" name="afiliacionTipoAfilicacion[]" value="{{$tipoafilicacion->idTipoAfiliacion}}" />
+                                                    @endif
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div class="form-group">
+                                                <label for="afiliacionEntidad4" class="control-label">Entidad *</label>
+                                                <select disabled class="form-control" id="afiliacionEntidad4" name="afiliacionEntidad[]">
+                                                    <option value=""></option>
+                                                    @foreach ($afiliacionesEnt4 as $afiliacionesEntidad4)
+                                                        <option value="{{$afiliacionesEntidad4->idTercero}}">{{$afiliacionesEntidad4->razonSocial}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div class="form-group @isset($empleado->fechaIngreso) hasText @endisset">
+                                                <label for="afiliacionFecha4" class="control-label">Fecha Afiliación *</label>
+                                                <input type="date" readonly class="form-control" id="afiliacionFecha4" name="afiliacionFecha[]"  value="{{$empleado->fechaIngreso}}" />
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="row cambioAfiliacion" data-id="4">
+                                        <div class="col-3">
+                                            <div class="form-group">
+                                                <label for="afiliaFechaInicioCambio4" class="control-label">Fecha cambio Inicio</label>
+                                                <input type="date" readonly class="form-control" id="afiliaFechaInicioCambio4" name="afiliaFechaInicioCambio[]" />
+                                            </div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div class="form-group">
+                                                <label for="afiliacionEntidadNueva4" class="control-label">Entidad *</label>
+                                                <select disabled class="form-control" id="afiliacionEntidadNueva4" name="afiliacionEntidadNueva[]">
+                                                    <option value=""></option>
+                                                    @foreach ($afiliacionesEnt4 as $afiliacionesEntidad4)
+                                                        <option value="{{$afiliacionesEntidad4->idTercero}}">{{$afiliacionesEntidad4->razonSocial}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
                         @endif
-                        
                     @endif
                     
                 </div>

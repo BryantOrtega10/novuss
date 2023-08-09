@@ -881,6 +881,7 @@ class CatalogoContableController extends Controller
                  "ti.nombre as tipoidentificacion",
                  "p.idPeriodo",
                  "p.fkNomina",
+                 "p.fkTipoCotizante as fkTipoCotizantePeriodo",
                  "n.fkEmpresa",
                  "n.id_uni_nomina"
                 )
@@ -896,17 +897,17 @@ class CatalogoContableController extends Controller
         ->where("n.fkEmpresa","=",$req->empresa)
         ->whereBetween("ln.fechaLiquida",[$fechaInicioMes, $fechaFinMes])
         ->skip($reporte->registroActual)->take($cantidadPorConsulta)
-        //->where("dp.numeroIdentificacion","=","5893879")
+        //->where("dp.numeroIdentificacion","=","1025520380")
         ->distinct()
         ->get();
         
-        
+       
         $arrSalida = array();
         $cuentaEmpleadosActual = $reporte->registroActual;
         foreach($empleados as $empleado){
             $cuentaEmpleadosActual++;
 
-    
+            $empleado->fkTipoCotizante = $empleado->fkTipoCotizantePeriodo ?? $empleado->fkTipoCotizante;
             $arrayInt = array();
             $centrosCostoEmpleado = DB::table("distri_centro_costo_centrocosto", "ddc")
             ->join("centrocosto as cec", "cec.idcentroCosto", "=","ddc.fkCentroCosto")
@@ -1426,7 +1427,7 @@ class CatalogoContableController extends Controller
                             }
                         }                        
                     }
-                    else if($datoCuentaTipo3->subTipoConsulta == "2"){
+                    else if($datoCuentaTipo3->subTipoConsulta == "2" && $empleado->fkTipoCotizante != "23"){
                         foreach($parafiscales as $parafiscal){
                             $valor = $parafiscal->eps;
                             $tipoReg = $this->comportamientoPorNaturaleza($datoCuentaTipo3->cuenta);        

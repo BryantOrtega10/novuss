@@ -253,3 +253,61 @@
 [2023-08-02 01:32:58] local.INFO: El usuario bryant, ingresó a la acción 'Ver solicitud de liquidacion sin editar' con id:5059  
 [2023-08-02 01:33:04] local.INFO: El usuario bryant, recalculó las provisiones para la liquidación:5059  
 [2023-08-02 01:33:05] local.INFO: El usuario bryant, ingresó a la acción 'Ver detalles de liquidacion' para el comprobante de pago:108119  
+[2023-08-04 13:01:23] local.INFO: El usuario bryant ha iniciado sesión  
+[2023-08-04 13:01:25] local.INFO: El usuario bryant, ingresó al menu de empleados  
+[2023-08-04 13:01:42] local.INFO: El usuario bryant, ingresó al menu de empleados  
+[2023-08-04 13:01:46] local.INFO: El usuario bryant, ingresó al menu de ver empleado  
+[2023-08-04 13:01:54] local.INFO: El usuario bryant, ingresó al menu de modificar empleado  
+[2023-08-04 13:01:54] local.INFO: El usuario bryant, ingresó al menu de ver empleado  
+[2023-08-04 13:02:39] local.INFO: El usuario bryant, ingresó al menu de ver empleado  
+[2023-08-04 13:02:55] local.INFO: El usuario bryant, ingresó al menu de ver empleado  
+[2023-08-04 13:07:15] local.INFO: El usuario bryant, ingresó al menu 'Documento seguridad social'  
+[2023-08-04 13:07:45] local.INFO: El usuario bryant, generó un 'Documento seguridad social' de la fecha:2023-07-31, para la empresa:11  
+[2023-08-04 13:07:56] local.INFO: El usuario bryant, ingresó al menu 'Grupo de concepto'  
+[2023-08-04 13:08:12] local.INFO: El usuario bryant, modificó el 'Grupo de concepto' id: 6  
+[2023-08-04 13:08:17] local.INFO: El usuario bryant, ingresó al menu 'Grupo de concepto'  
+[2023-08-04 13:08:34] local.INFO: El usuario bryant, generó un 'Documento seguridad social' de la fecha:2023-07-31, para la empresa:11  
+[2023-08-04 13:09:40] local.INFO: El usuario bryant, ingresó al menu de ver empleado  
+[2023-08-04 13:11:18] local.INFO: El usuario bryant, ingresó a la acción 'Ver solicitud de liquidacion sin editar' con id:5076  
+[2023-08-04 13:11:25] local.INFO: El usuario bryant, ingresó a la acción 'Ver detalles de liquidacion' para el comprobante de pago:108535  
+[2023-08-04 13:14:58] local.INFO: El usuario bryant, recalculó las provisiones para la liquidación:5076  
+[2023-08-04 13:15:00] local.INFO: El usuario bryant, ingresó a la acción 'Ver solicitud de liquidacion sin editar' con id:5076  
+[2023-08-04 13:15:04] local.INFO: El usuario bryant, ingresó a la acción 'Ver detalles de liquidacion' para el comprobante de pago:108535  
+[2023-08-04 13:16:31] local.INFO: El usuario bryant, recalculó las provisiones para la liquidación:5076  
+[2023-08-04 13:17:15] local.INFO: El usuario bryant, ingresó a la acción 'Ver solicitud de liquidacion sin editar' con id:5076  
+[2023-08-04 13:17:23] local.INFO: El usuario bryant, ingresó a la acción 'Ver detalles de liquidacion' para el comprobante de pago:108535  
+[2023-08-04 13:24:38] local.INFO: El usuario bryant, generó un 'Documento seguridad social' de la fecha:2023-07-31, para la empresa:11  
+[2023-08-04 13:24:42] local.INFO: El usuario bryant, ingresó al menu reporte contable  
+[2023-08-04 13:24:51] local.INFO: El usuario bryant, generó un reporte contable  
+[2023-08-04 13:26:16] local.INFO: El usuario bryant, generó un reporte contable  
+[2023-08-04 13:26:19] local.INFO: El usuario bryant, generó un reporte contable  
+[2023-08-04 13:26:19] local.INFO: El usuario bryant, generó un reporte contable  
+[2023-08-04 13:26:20] local.INFO: El usuario bryant, generó un reporte contable  
+[2023-08-04 13:26:20] local.INFO: El usuario bryant, generó un reporte contable  
+[2023-08-04 13:26:20] local.INFO: El usuario bryant, generó un reporte contable  
+[2023-08-04 13:26:20] local.INFO: El usuario bryant, generó un reporte contable  
+[2023-08-04 13:26:21] local.INFO: El usuario bryant, generó un reporte contable  
+[2023-08-04 13:26:21] local.INFO: El usuario bryant, generó un reporte contable  
+[2023-08-04 13:26:21] local.INFO: El usuario bryant, generó un reporte contable  
+[2023-08-04 13:26:22] local.INFO: El usuario bryant, generó un reporte contable  
+[2023-08-04 13:26:22] local.INFO: El usuario bryant, generó un reporte contable  
+[2023-08-04 13:26:22] local.INFO: El usuario bryant, generó un reporte contable  
+[2023-08-04 13:26:23] local.INFO: El usuario bryant, generó un reporte contable  
+[2023-08-04 13:26:23] local.INFO: El usuario bryant, generó un reporte contable  
+[2023-08-04 13:26:23] local.INFO: El usuario bryant, generó un reporte contable  
+[2023-08-04 13:26:24] local.INFO: El usuario bryant, generó un reporte contable  
+[2023-08-04 13:26:24] local.INFO: El usuario bryant, generó un reporte contable  
+[2023-08-04 13:26:24] local.INFO: El usuario bryant, generó un reporte contable  
+[2023-08-04 13:26:25] local.INFO: El usuario bryant, generó un reporte contable  
+[2023-08-04 13:26:25] local.INFO: El usuario bryant, generó un reporte contable  
+[2023-08-04 13:26:25] local.INFO: El usuario bryant, generó un reporte contable  
+[2023-08-04 13:26:26] local.INFO: El usuario bryant, generó un reporte contable  
+[2023-08-04 13:26:26] local.INFO: El usuario bryant, generó un reporte contable  
+[2023-08-04 13:26:26] local.INFO: El usuario bryant, generó un reporte contable  
+[2023-08-04 13:26:27] local.INFO: El usuario bryant, generó un reporte contable  
+[2023-08-04 13:26:27] local.INFO: El usuario bryant, generó un reporte contable  
+[2023-08-04 13:26:27] local.INFO: El usuario bryant, generó un reporte contable  
+[2023-08-04 13:26:28] local.INFO: El usuario bryant, generó un reporte contable  
+[2023-08-04 13:28:21] local.INFO: El usuario bryant, ingresó al menu reporte contable  
+[2023-08-04 13:29:23] local.INFO: El usuario bryant, generó un reporte contable  
+[2023-08-04 13:29:59] local.INFO: El usuario bryant, ingresó al menu reporte contable  
